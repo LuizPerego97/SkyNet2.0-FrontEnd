@@ -1,0 +1,67 @@
+<form (ngSubmit)="onSubmit()" #filmeForm="ngForm">
+  <h1>Adicione um filme</h1>
+  <div class="form-group">
+    <label for="titulo">Título</label>
+    <input
+      type="text"
+      class="form-control"
+      id="titulo"
+      name="titulo"
+      [(ngModel)]="filme.titulo"
+      placeholder="Título do filme"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="genero">Gênero</label>
+    <input
+      type="text"
+      class="form-control"
+      id="genero"
+      name="genero"
+      [(ngModel)]="filme.genero"
+      placeholder="Gênero do filme"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="lancamento">Ano de lançamento</label>
+    <input
+      type="text"
+      class="form-control"
+      id="lancamento"
+      name="lancamento"
+      [(ngModel)]="filme.anoLancamento"
+      placeholder="Ano de lançamento"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="descricao">Descrição</label>
+    <input
+      type="text"
+      class="form-control"
+      id="descricao"
+      name="descricao"
+      [(ngModel)]="filme.descricao"
+      placeholder="Descrição do filme"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="tipo">Tipo</label>
+    <input
+      type="text"
+      class="form-control"
+      id="tipo"
+      name="tipo"
+      [(ngModel)]="filme.tipo"
+      placeholder="Filme ou Série"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Salvar</button>
+  <button type="button" routerLink="/filmes" class="btn btn-danger">
+    Cancelar
+  </button>
+</form>

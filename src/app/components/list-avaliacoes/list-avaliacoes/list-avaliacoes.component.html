@@ -1,0 +1,131 @@
+<div class="caixa-lista">
+  <h1>Avaliações cadastradas</h1>
+  <table class="table table-striped-columns">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th>Nome do filme</th>
+        <th>Nome do usuario</th>
+        <th>Nota</th>
+        <th>Comentario</th>
+        <th>Data da avaliacao</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let avaliacao of avaliacoes; let i = index">
+        <th scope="row">{{ i }}</th>
+        <td>{{ avaliacao.filme?.titulo }}</td>
+        <td>{{ avaliacao.nomeUsuario }}</td>
+        <td>{{ avaliacao.nota }}</td>
+        <td>{{ avaliacao.comentario }}</td>
+        <td>{{ avaliacao.dataAvaliacao }}</td>
+        <td>
+          <i
+            class="bi bi-pencil-fill"
+            (click)="selecionarParaEditar(avaliacao)"
+          ></i>
+          <i
+            class="bi bi-trash2-fill"
+            (click)="selecionarParaApagar(avaliacao)"
+          ></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" routerLink="/addAvaliacao" class="btn btn-secondary">
+    Adicionar Avaliacão
+  </button>
+</div>
+
+<div class="div-exclusao" *ngIf="formularioExcluir == true">
+  <h3>
+    Deseja exluir a avaliacão do:
+    <strong>{{ avaliacaoSelecionado.nomeUsuario }}</strong> ?
+  </h3>
+  <div>
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="excluirAvaliacao(avaliacaoSelecionado)"
+    >
+      Excluir
+    </button>
+    <button type="button" (click)="cancelar()" class="btn btn-danger">
+      Cancelar
+    </button>
+  </div>
+</div>
+
+<div class="div-alterar" *ngIf="formularioEditar == true">
+  <form (ngSubmit)="onSubmit(avaliacaoSelecionado)" #avaliacaoForm="ngForm">
+    <h3>
+      Alterar avaliacao do:
+      <strong>{{ avaliacaoSelecionado.nomeUsuario }}</strong> ?
+    </h3>
+    <div class="form-group">
+      <label for="usuario">Nome do Usuario</label>
+      <input
+        type="text"
+        class="form-control"
+        id="usuario"
+        name="usuario"
+        [(ngModel)]="avaliacaoSelecionado.nomeUsuario"
+        placeholder="Nome do usuario"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="id">Id do filme</label>
+      <input
+        type="text"
+        class="form-control"
+        id="id"
+        name="id"
+        [(ngModel)]="avaliacaoSelecionado.idFilme"
+        placeholder="Id fo filme"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="nota">Nota</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nota"
+        name="lancamento"
+        [(ngModel)]="avaliacaoSelecionado.nota"
+        placeholder="Nota do filme"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="comentario">Comentario</label>
+      <input
+        type="text"
+        class="form-control"
+        id="comentario"
+        name="comentario"
+        [(ngModel)]="avaliacaoSelecionado.comentario"
+        placeholder="Comentario do filme"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="date">Data do comentário</label>
+      <input
+        type="date"
+        class="form-control"
+        id="tipo"
+        name="date"
+        [(ngModel)]="avaliacaoSelecionado.dataAvaliacao"
+        placeholder="Data do comentario"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="button" (click)="cancelar()" class="btn btn-danger">
+      Cancelar
+    </button>
+  </form>
+</div>
